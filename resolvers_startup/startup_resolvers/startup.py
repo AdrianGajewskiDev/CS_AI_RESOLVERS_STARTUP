@@ -31,11 +31,11 @@ def _process_record(record: dict) -> int:
     InternalLogger.LogDebug(f"Starting resolvers: {RESOLVERS}")
     InternalLogger.LogDebug(f"Starting resolvers with payload: {payload}")
     if not RESOLVERS:
-        update_status(task_id, created_date, "FAILED")
+        update_status(task_id, "FAILED")
         InternalLogger.LogError("No resolvers found. Exiting.")
         raise Exception("No resolvers found.")
     
-    update_status(task_id, created_date, "GATHERING_DATA")
+    update_status(task_id, "GATHERING_DATA")
     
     for resolver in ast.literal_eval(RESOLVERS):
         start_resolver(resolver, payload)
