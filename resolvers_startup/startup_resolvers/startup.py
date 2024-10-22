@@ -22,11 +22,12 @@ def _process_record(record: dict) -> int:
     seed_data = json.loads(new_image["seed_data"]["S"])
     task_id = new_image["task_id"]["S"]
     created_date = new_image["created_date"]["S"]
-
+    _filter = json.loads(new_image["filter"]["S"])
     payload = {
         "seed_data": seed_data,
         "task_id": task_id,
-        "created_date": created_date
+        "created_date": created_date,
+        "filter": _filter
     }
     InternalLogger.LogDebug(f"Starting resolvers: {RESOLVERS}")
     InternalLogger.LogDebug(f"Starting resolvers with payload: {payload}")
